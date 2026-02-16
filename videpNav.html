@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+        <title>
+            影片集
+        </title>
+         <style>
+
+         /*  * {
+               outline: 2px solid red !important; /* 不影響尺寸的邊框 */
+               /*  background: rgba(255, 0, 0, 0.1) !important; /* 淡淡的底色 */
+           
+        /*   }*/
+            body
+            {
+                margin: 0; /*去掉瀏覽器預設的空白邊距，避免頁面四周自動留空白。*/
+                padding: 20px;/*內部留 20px 的空白，讓內容不會貼到頁面邊緣，看起來更舒服*/
+                font-family: sans-serif;/*設定整個頁面的字體為「無襯線字型」，例如 Arial、Helvetica，字型比較簡潔現代。*/
+                background-color: #f0f0f0;/*設定頁面背景為淡灰色。*/
+                text-align: center;
+                background-image: url("body5.JPG");
+                background-size:cover;
+
+                
+            }
+            .videoDiv
+            {
+                display: grid;/*使用 網格排版，可以把影片自動排列成表格樣式，比用浮動（float）或 flex 更容易控制行列。*/
+                grid-template-columns: repeat(4,1fr);/*簡單說就是「一行四個影片，平均分配寬度」。*/
+                gap: 16px;/*每個影片之間空隙 16px，避免貼在一起。*/
+                padding: 16px;/*讓整個影片區塊跟容器邊緣留 16px 空間。*/
+                max-width: 1500px;/*限制影片區最大寬度 1000px，避免大螢幕拉得太寬。*/
+                margin: 0 auto;/*讓整個影片區水平置中，左右自動留空白。*/
+                margin-top:30px;
+               /* margin-left: 100px;*/
+               
+            }
+            .videoDiv video 
+            {
+                width: 100%;/*影片寬度撐滿父容器，保證影片自動縮放。*/
+                aspect-ratio: 16/9;/*固定影片比例為 16:9，無論容器大小如何，影片比例不會變形。*/
+                margin:0 auto;/*讓整個影片區水平置中，左右自動留空白。*/
+                border-radius: 8px;/*影片四個角變圓角，看起來更柔和。*/
+                object-fit: cover;/*保持影片比例，並填滿整個容器，多餘部分會被裁掉。
+→ 如果沒有這個，影片可能會被拉長或壓扁。*/
+                transition: transform 0.3s;/*設定動畫效果，用在後面的 hover 時，影片縮放會有平滑過渡，而不是瞬間跳動。*/
+                background-color: #000;/*如果影片還沒載入，先顯示黑色背景，不會看到空白。*/
+            }
+            .videoDiv video:hover
+            {
+                transform: scale(1.05);/*滑鼠放上去影片會放大 1.05 倍（5%），加上前面設定的 transition，會平滑放大。*/
+            }
+            @media (max-width:768px){/*媒體查詢（Media Query），意思是「當螢幕寬度小於某值時，套用這段樣式」。*/
+                .videoDiv
+                {
+                    grid-template-columns: repeat(2,1fr);/*平板螢幕以下，改為 2 列影片。*/
+                }
+            }
+            @media(max-width:480px)
+            {
+                .videoDiv
+                {
+                    grid-template-columns: 1fr;/*手機螢幕以下，改為 1 列影片。*/
+                }
+            }
+            h1
+            {
+                display: inline-block; /* 寬度縮到文字本身 */
+                font-size: 60px;
+                font-weight: 600;
+                margin: 0;
+                background: linear-gradient(90deg, #7b2ff7, #4a6cf7, #1ea7fd);
+                -webkit-background-clip: text;  /* 文字裁切背景 */
+                background-clip: text;
+                -webkit-text-fill-color: transparent; /* 文字透明顯示背景 */            
+            }       
+         </style>
+    </head>
+    <body>
+        <h1>英雄聯盟影片</h1>
+        <div class="videoDiv">
+            <video controls autoplay muted playsinline class="video" >
+                <source src="riven.webm" type="video/webm" >
+            </video>
+            <video controls autoplay muted playsinline class="video1">
+                <source src="adcarry.webm" type="video/webm" >
+            </video>
+            <video controls autoplay muted playsinline class="video2">
+                <source src="Gnar.webm" type="video/webm">
+            </video>
+            
+        </div>
+
+    </body>
+</html>

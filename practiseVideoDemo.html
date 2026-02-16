@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta  charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>練習css概念</title>
+        <style>
+           /*css 驗證代碼*/
+         /*  *{
+                background-color: rgba(255,0,0,0.1) !important; 
+            }*/
+            
+            /* 在html 跟body 把所以預設設定重置並重新設定,flex-dirction 只負責元素排列方向,justify-content是負責所有內容在相對應的排列上置中*/
+            /*1️⃣ 主軸 (main axis) 如果用flex布局的話 主軸就是flex-dirction 副軸 就是相對應的方向   
+
+                 決定 元素排隊的方向
+
+                 水平排 → row → 左右排列
+
+                 垂直排 → column → 上下排列
+
+                用 justify-content 控制整排元素在主軸上的位置
+
+                2️⃣ 副軸 (cross axis)
+
+                永遠 垂直於主軸
+
+                決定 整排元素在副軸方向的位置
+
+                水平排 → 副軸垂直 → 可以靠上、靠下或置中
+
+                垂直排 → 副軸水平 → 可以靠左、靠右或置中
+
+                用 align-items 控制*/
+            html,body
+            {
+                display: flex;
+                margin: 0;
+                height: 100%;
+                justify-content: center;
+                flex-direction: column;
+                
+            }
+            body{
+               background:linear-gradient(-45deg,#ee7752, #e73c7e, #23a6d5, #23d5ab);
+               background-size: 400% 400%;
+               animation: back 15s ease infinite;
+                background-position: center;
+            }
+            @keyframes back
+            {
+                0%  { background-position: 0% 50%;}
+                50%  {background-position: 100% 50%;}
+                100% {background-position: 0% 50%;}
+            }
+
+            /* 這是影片列表,父容器div用grid布局分成四行網格狀排列,讓影片可以4*4排列*/
+            .videoList
+            {
+                display: grid;/*用grid布局*/
+                grid-template-columns: repeat(4,1fr); /*四個影片位置為一行, 間距1fr*/
+                margin: 80px;
+                gap: 10px;
+                height: 60vh;
+                
+            }
+            .testC
+            {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+            }
+            .videoControl,.videoControl1
+            {
+               height: 150px;
+               width: 250px;
+               margin:0;
+            }
+
+            P
+            {
+                font-size: 80PX;
+                white-space: pre-line;
+                opacity: 0;
+                animation: textCss 8s ease infinite;
+            }
+            @keyframes textCss{
+           form {
+                opacity: 0;
+               transform:  translateY(20px);
+
+            }to
+            {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <!-- 切記裡用grid布局 只能用一個父容器做grid布局   在哪個元素grid  她只能在他底下的子元素做網狀結構-->
+       <div class="videoList">
+            <!--建立一個video 效果控制 給他控制台  自動撥放 靜音 循環播放-->
+           <video class="videoControl"  controls  autoplay loop muted > 
+                <!--建立連結把音樂檔傳進網頁-->
+              <source src="riven.webm" type="video/webm">
+            </video>   
+            <video class="videoControl1" muted autoplay loop controls>
+                <source src="Gnar.webm" type="video/webm">
+            </video>
+        </div>
+        <!-- 建立一個bgm  效果控制  不顯示控制台 自動撥放 靜音 循環播放-->
+            <audio  id="bgm" src="music.mp3" loop autoplay muted></audio>
+        <script>     
+          /* 建立事件  利用點擊事件 取消自動撥放的靜音  音樂就可以當作背景音樂 無限循環播放ˋ*/
+            document.addEventListener('click',()=>{
+               const bgm = document.getElementById('bgm')
+                bgm.muted = false;/*關掉靜音*/
+                bgm.volume =0.15;/*控制音量*/
+                bgm.play(); /*自動撥放*/
+            },
+            {once:true}/*只點擊一次  避免點擊第二次關閉音樂*/
+            );
+         /* 不管有沒有元素ˋ 都存在主軸跟副軸  想要改變排列方向 必須要有兩個元素做排列 不然一律都會是水平方向  
+         另外flex的主軸跟副軸只會在父容器才會有  子元素也有    ,父容器就是不管什麼標籤都可以 只要有其他標籤包在父標籤裡面就可以
+          3 重點整理
+          父容器概念：只要包含其他元素，就可以是父容器
+          Flex / Grid 父容器：可以控制 主軸、副軸、對齊、間距
+          不加 display:flex/grid：父容器存在，但沒有排列控制
+          任何標籤都可以是父容器：div, section, article, header, footer, ul, li……全都可以 */
+        </script>
+        <div class="testC">
+        <div class="test">123456</div>
+        <div class="test1">2123456</div>
+        <div class="test2">3123456</div>
+        <P>練習動畫</P>
+        </div>
+    </body>
+</html>

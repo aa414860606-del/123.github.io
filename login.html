@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta neme="viewport" content="width=device-width,inital-scale=1.0">
+        <title>登入</title>
+        <style>
+                /*
+           * {
+               outline: 2px solid red !important; /* 不影響尺寸的邊框 */
+            /*   background: rgba(255, 0, 0, 0.1) !important; 淡淡的底色 
+           }
+           */
+            input{
+                display: block;
+                height: 100px;
+                width: 1000px ;
+                font-size: 50px;
+                
+                
+            }
+            body
+            {
+                display: flex;
+                text-align: center;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+                background-image: url('bea.jpg');
+                background-size: cover;
+                font-family: "Inter", "Noto Sans TC", sans-serif;
+                
+            }
+            h1
+            {
+                margin: 20px;           /*   移除上下空白 */
+                 font-size: 50px; 
+                 background: linear-gradient(
+                    90deg,
+                    #7b2ff7,
+                    #4a6cf7,
+                    #1ea7fd
+                ); 
+                 -webkit-background-clip: text;
+                 background-clip: text;
+                 -webkit-text-fill-color: transparent;
+                 display:inline-block; /* 背景裁切要生效 
+                 
+                 
+                /*padding: 0;            如果有預設 padding */
+              /*  font-weight: 400;    如果想自己設定粗細 */
+              /*  line-height: 1;        自行控制行高 */
+            }
+            button 
+            {
+                height: 100px;
+                width: 300px;
+                font-size: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="loginForm" action="/login" method="post">
+        <h1>帳戶登入</h1>
+        <input type="text" id="username"  placeholder="帳號" required>
+        <input type="password" id="password" placeholder="密碼" required>
+        <button type="submit">登入</button>
+        
+        <script>
+                const users=
+                [
+                    {
+                    account: 'a414480',
+                    password: 'fsa00173'
+                    }
+                ];
+                const login=document.getElementById('loginForm');
+                login.addEventListener('submit' ,function(e){
+                    e.preventDefault();
+                
+                const username=document.getElementById('username') .value;
+                const password=document.getElementById('password').value;
+                if(username.trim() === "" ||password.trim() ==="")
+                {
+                    alert('請輸入帳號密碼');
+                    return;
+                }
+                else if(users.some(u => u.account ===username &&u.password ===password))
+                {
+                    alert('恭喜登入成功!');
+                    window.location.href='frontPage.html';
+                }
+                else
+                {
+                    alert('登入失敗');
+                }
+            }); 
+        </script>
+    </body>
+</html>
